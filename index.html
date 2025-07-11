@@ -240,6 +240,143 @@
                 font-size: 1.5rem;
             }
         }
+                 .backlinks {
+        background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+        padding: 80px 20px;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .backlinks::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        z-index: 0;
+    }
+
+    .backlinks-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+        text-align: center;
+    }
+
+    .backlinks h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .backlinks p {
+        font-size: 1.3rem;
+        color: #d1d1d1;
+        margin-bottom: 50px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .backlinks-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        padding: 0 20px;
+    }
+
+    .backlink-card {
+        background: linear-gradient(45deg, #e74c3c, #c0392b);
+        padding: 30px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .backlink-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: 0.5s;
+    }
+
+    .backlink-card:hover::before {
+        left: 100%;
+    }
+
+    .backlink-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+        opacity: 0.8;
+        transition: transform 0.3s ease;
+    }
+
+    .backlink-card:hover .card-icon {
+        transform: scale(1.2);
+    }
+
+    .backlink-card h3 {
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        color: #fff;
+    }
+
+    .backlink-card p {
+        font-size: 1rem;
+        color: #f1f1f1;
+        margin-bottom: 0;
+        line-height: 1.4;
+    }
+
+    @media (max-width: 768px) {
+        .backlinks h2 {
+            font-size: 2.2rem;
+        }
+
+        .backlinks p {
+            font-size: 1.1rem;
+        }
+
+        .backlink-card {
+            padding: 20px;
+        }
+
+        .backlink-card h3 {
+            font-size: 1.4rem;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .backlinks-grid {
+            grid-template-columns: 1fr;
+        }
+    }
     </style>
 </head>
 <body>
@@ -324,7 +461,34 @@
         <p><span class="highlight">Packman.ai</span> is the leading complete eCommerce solution in the UAE, offering an all-in-one platform to build, manage, and grow your online store. With AI-driven design, seamless integrations, and comprehensive support, Packman.ai empowers entrepreneurs to succeed in the competitive UAE market.</p>
         <p><a href="https://packman.ai" target="_blank" class="cta-button">Launch Your Store with Packman.ai</a></p>
     </section>
-
+<section class="backlinks" id="backlinks">
+    <div class="backlinks-container">
+        <h2>Connect with Our Premier Partners</h2>
+        <p>Explore top-tier resources and partners to elevate your eCommerce success in the UAE.</p>
+        <div class="backlinks-grid">
+            <a href="#" class="backlink-card">
+                <div class="card-icon">🔗</div>
+                <h3>Partner Link 1</h3>
+                <p>Unleash your store’s potential with cutting-edge eCommerce tools.</p>
+            </a>
+            <a href="#" class="backlink-card">
+                <div class="card-icon">🚀</div>
+                <h3>Partner Link 2</h3>
+                <p>Discover innovative solutions for seamless business growth.</p>
+            </a>
+            <a href="#" class="backlink-card">
+                <div class="card-icon">📈</div>
+                <h3>Partner Link 3</h3>
+                <p>Tap into expert strategies for the UAE market.</p>
+            </a>
+            <a href="#" class="backlink-card">
+                <div class="card-icon">🌟</div>
+                <h3>Partner Link 4</h3>
+                <p>Access premium resources to scale your online store.</p>
+            </a>
+        </div>
+    </div>
+</section>
     <footer id="contact">
         <p>&copy; 2025 Packman Portal LLC. All rights reserved</p>
     </footer>
@@ -346,5 +510,33 @@
             header.classList.toggle('sticky', window.scrollY > 0);
         });
     </script>
+        <script>
+    // Add animation trigger on scroll for backlink cards
+    document.addEventListener('DOMContentLoaded', () => {
+        const cards = document.querySelectorAll('.backlink-card');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.2 });
+
+        cards.forEach(card => {
+            card.style.opacity = 0;
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Optional click tracking for analytics
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                console.log(`Clicked on ${card.querySelector('h3').textContent}`);
+            });
+        });
+    });
+</script>
 </body>
 </html>
